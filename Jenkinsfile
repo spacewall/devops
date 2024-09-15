@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker Containers') {
             steps {
                 // Собираем контейнеры с помощью docker-compose
-                sh 'docker compose version'
+                sh 'docker-compose up -d --build'
             }
         }
 
