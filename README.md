@@ -140,18 +140,20 @@ Deploy:
 ![Item](img/1.png)
 2. Ввести имя **Hadoop** (это важно для согласования имён контейнеров, переменные окружения не подключал), выбрать **Pipeline**, нажать **OK**.
 ![Hadoop](img/2.png)
-3. В разделе **Pipeline** выбрать **Pipeline script from SCM** в графе **Definition.
-![Configurations](img/3.png)
-4. В графе SCM выбрать Git.
+3. Поставить галочку на запрет параллельной сборки.
+![Hadoop](img/3.png)
+4. В разделе **Pipeline** выбрать **Pipeline script from SCM** в графе **Definition.
 ![Configurations](img/4.png)
-5. В графу **Repository URL** вставить ссылку на этот репозиторий <link>https://github.com/spacewall/devops.git</link>
+5. В графе SCM выбрать Git.
 ![Configurations](img/5.png)
-6. В графе **Branches to build** поменять название ветки на **main**.
+6. В графу **Repository URL** вставить ссылку на этот репозиторий <link>https://github.com/spacewall/devops.git</link>
 ![Configurations](img/6.png)
-7. Нажать сохранить.
+7. В графе **Branches to build** поменять название ветки на **main**.
 ![Configurations](img/7.png)
-8. Запустить pipeline по кнопке **Собрать сейчас**.
+8. Нажать сохранить.
 ![Configurations](img/8.png)
+9. Запустить pipeline по кнопке **Собрать сейчас**.
+![Configurations](img/9.png)
 
 Кроме того, необходимо поменять файл /opt/homebrew/Cellar/jenkins-lts/2.462.2/homebrew.mxcl.jenkins-lts.plist, добавив туда следующий код:
 ```
