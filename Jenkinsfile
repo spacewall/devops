@@ -10,8 +10,9 @@ pipeline {
                 // Собираем образ
                 sh 'docker build -t hadoop .'
 
-                // Запускаем контейнер
+                // Запускаем контейнер и даём 10 секунд на запуск служб
                 sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
+                sleep(time: 10, unit: 'SECONDS')
             }
         }
 
@@ -20,7 +21,6 @@ pipeline {
                 script {
                     // Копируем файл config в контейнер
                     sh 'docker cp config hadoop:/opt/hadoop'
-                    sleep(time: 2, unit: 'SECONDS')
                     
                     // Выполняем команду в контейнере
                     sh 'docker exec -u hadoopuser hadoop bash -c "hdfs dfs -put /opt/hadoop/config /"'
