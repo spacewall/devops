@@ -155,6 +155,8 @@ Deploy:
 9. Запустить pipeline по кнопке **Собрать сейчас**.
 ![Configurations](img/9.png)
 
+---
+
 Кроме того, необходимо поменять файл /opt/homebrew/Cellar/jenkins-lts/2.462.2/homebrew.mxcl.jenkins-lts.plist, добавив туда следующий код:
 ```
 <key>EnvironmentVariables</key>

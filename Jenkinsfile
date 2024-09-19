@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Docker Containers') {
+        stage('Build Docker Container') {
             steps {
                 // Собираем контейнеры с помощью docker-compose
                 sh 'docker compose up -d --build'
