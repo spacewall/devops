@@ -4,8 +4,14 @@ pipeline {
     stages {
         stage('Build Docker Container') {
             steps {
-                // Собираем контейнеры с помощью docker-compose
-                sh 'docker compose up -d --build'
+                // Скачиваем сборку
+                sh 'wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz'
+
+                // Собираем образ
+                sh 'docker build -t hadoop .'
+
+                // Запускаем контейнер
+                sh 'docker run -it -p 9870:9870 --name hadoop hadoop'
             }
         }
 
@@ -13,11 +19,11 @@ pipeline {
             steps {
                 script {
                     // Копируем файл config в контейнер
-                    sh 'docker cp config hadoop-datanode-1:/opt/hadoop'
-                    sleep(time: 10, unit: 'SECONDS')
+                    sh 'docker cp config hadoop:/opt/hadoop'
+                    sleep(time: 2, unit: 'SECONDS')
                     
                     // Выполняем команду в контейнере
-                    sh 'docker exec hadoop-datanode-1 bash -c "hdfs dfs -put /opt/hadoop/config /"'
+                    sh 'docker exec -u hadoopuser hadoop bash -c "hdfs dfs -put /opt/hadoop/config /"'
                 }
             }
         }
