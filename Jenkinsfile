@@ -31,8 +31,10 @@ pipeline {
 
     post {
         always {
-            // Останавливаем и удаляем контейнеры после выполнения
-            sh 'docker-compose down'
+            // Останавливаем и удаляем контейнер после выполнения
+            sh 'docker stop hadoop'
+            sleep(time: 5, unit: 'SECONDS')
+            sh 'docker rm hadoop'
         }
     }
 }
