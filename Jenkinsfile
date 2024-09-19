@@ -11,7 +11,7 @@ pipeline {
                 sh 'docker build -t hadoop .'
 
                 // Запускаем контейнер
-                sh 'docker run -p 9870:9870 --name hadoop hadoop'
+                sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
             }
         }
 
