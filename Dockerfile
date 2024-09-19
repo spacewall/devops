@@ -1,11 +1,15 @@
 FROM ubuntu:latest
 
 RUN apt update && \
-    apt -y install openjdk-8-jdk && \
+    apt -y install maven openjdk-8-jdk && \
     apt install -y ssh pdsh openssh-server && \
     apt clean
 
-ADD hadoop-3.3.6.tar.gz .
+ADD hadoop-3.3.6-src.tar.gz .
+RUN cd hadoop-3.3.6-src && \
+    mvn package -Pdist -DskipTests -Dtar -Dmaven.javadoc.skip=true
+RUN mv ./hadoop-dist/target/hadoop-3.3.0.tar.gz . && \
+    tar -xvzf hadoop-3.3.6.tar.gz
 RUN mv hadoop-3.3.6 /opt/hadoop && \
     rm -fr hadoop-3.3.6.tar.gz
 
