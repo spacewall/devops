@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker Container') {
             steps {
                 // Скачиваем сборку
-                sh 'curl -s https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz'
+                sh 'curl https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz --output hadoop-3.3.6.tar.gz'
 
                 // Собираем образ
                 sh 'docker build -t hadoop .'
