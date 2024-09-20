@@ -12,11 +12,9 @@ ADD hadoop-3.3.5-src.tar.gz .
 COPY package.json hadoop-3.3.5-src/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-applications-catalog/hadoop-yarn-applications-catalog-webapp/package.json
 RUN chown -R hadoopuser:hadoopuser /hadoop-3.3.5-src
 
-USER hadoopuser
 RUN cd hadoop-3.3.5-src && \
     mvn package -Pdist -DskipTests -Dtar -Dmaven.javadoc.skip=true
 
-USER root
 RUN mv /hadoop-3.3.5-src/hadoop-dist/target/hadoop-3.3.5.tar.gz . && \
     tar -xvzf hadoop-3.3.5.tar.gz
 
