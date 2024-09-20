@@ -5,11 +5,11 @@ pipeline {
         stage('Build Docker Container') {
             steps {
                 // Собираем образ
-                sh 'docker build -t hadoop .'
+                // sh 'docker build -t hadoop .'
 
                 // Запускаем контейнер и даём 10 секунд на запуск служб
                 sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
-                sleep(time: 10, unit: 'SECONDS')
+                sleep(time: 15, unit: 'SECONDS')
             }
         }
 
