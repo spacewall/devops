@@ -5,20 +5,20 @@ pipeline {
         stage('Build Docker Container') {
             steps {
                 // Собираем образ
-                // sh 'docker build -t hadoop .'
-                sh 'echo $JAVA_HOME'
+                sh 'docker build -t hadoop .'
+                
+                // Запускаем контейнер и даём 8 секунд на запуск служб
+                sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
+                sleep(time: 8, unit: 'SECONDS')
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Запускаем контейнер и даём 15 секунд на запуск служб
-                sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
-                sleep(time: 15, unit: 'SECONDS')
-
                 script {
                     // Копируем файл config в контейнер
                     sh 'docker cp config hadoop:/opt/hadoop'
+                    sleep(time: 6, unit: 'SECONDS')
                     
                     // Выполняем команду в контейнере
                     sh 'docker exec -u hadoopuser hadoop bash -c "hdfs dfs -put /opt/hadoop/config /"'
