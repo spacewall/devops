@@ -15,7 +15,6 @@ RUN chown -R hadoopuser:hadoopuser /hadoop-3.3.6-src
 USER hadoopuser
 RUN cd hadoop-3.3.6-src && \
     mvn package -Pdist -DskipTests -Dtar -Dmaven.javadoc.skip=true
-RUN mvn clean
 
 USER root
 RUN mv /hadoop-3.3.6-src/hadoop-dist/target/hadoop-3.3.6.tar.gz . && \
