@@ -156,7 +156,7 @@ Deploy:
 ![Configurations](img/5.png)
 6. В графу **Repository URL** вставить ссылку на этот репозиторий <link>https://github.com/spacewall/devops.git</link>
 ![Configurations](img/6.png)
-7. В графе **Branches to build** поменять название ветки на **main**.
+7. В графе **Branches to build** поменять название ветки на **pre_build**.
 ![Configurations](img/7.png)
 8. Нажать сохранить.
 ![Configurations](img/8.png)
