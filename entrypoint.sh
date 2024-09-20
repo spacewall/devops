@@ -4,7 +4,7 @@ service ssh start
 
 su - hadoopuser -c "ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && \
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys  && \
-chown 0600 ~/.ssh/authorized_keys"
+chmod 0600 ~/.ssh/authorized_keys"
 
 service ssh restart
 
