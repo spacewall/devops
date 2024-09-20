@@ -6,6 +6,7 @@ pipeline {
             steps {
                 // Собираем образ
                 // sh 'docker build -t hadoop .'
+                sh 'echo $JAVA_HOME'
             }
         }
 
