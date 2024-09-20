@@ -6,15 +6,15 @@ pipeline {
             steps {
                 // Собираем образ
                 // sh 'docker build -t hadoop .'
-
-                // Запускаем контейнер и даём 10 секунд на запуск служб
-                sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
-                sleep(time: 15, unit: 'SECONDS')
             }
         }
 
         stage('Run Tests') {
             steps {
+                // Запускаем контейнер и даём 10 секунд на запуск служб
+                sh 'docker run -d -p 9870:9870 --name hadoop hadoop'
+                sleep(time: 5, unit: 'SECONDS')
+
                 script {
                     // Копируем файл config в контейнер
                     sh 'docker cp config hadoop:/opt/hadoop'
