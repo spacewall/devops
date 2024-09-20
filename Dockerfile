@@ -26,6 +26,7 @@ COPY core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY sshd_config /etc/ssh/sshd_config
+COPY hosts /etc/hosts
 
 RUN chmod +x /entrypoint.sh
 
