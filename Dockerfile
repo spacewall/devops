@@ -10,15 +10,14 @@ RUN useradd -ms /bin/bash hadoopuser
 ADD hadoop-3.3.6-src.tar.gz .
 COPY package.json hadoop-3.3.6-src/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-applications-catalog/hadoop-yarn-applications-catalog-webapp/package.json
 RUN cd hadoop-3.3.6-src && \
-    su - hadoopuser -c 'mvn package -Pdist -DskipTests -Dtar \
-    -Dmaven.javadoc.skip=true -X'
+    mvn package -Pdist -DskipTests -Dtar -Dmaven.javadoc.skip=true -X
+RUN chown -R hadoopuser:hadoopuser /hadoop-3.3.6-src/hadoop-dist/target/hadoop-3.3.6.tar.gz
 RUN mv /hadoop-3.3.6-src/hadoop-dist/target/hadoop-3.3.6.tar.gz . && \
     tar -xvzf hadoop-3.3.6.tar.gz
 RUN mv hadoop-3.3.6 /opt/hadoop && \
     rm -fr hadoop-3.3.6.tar.gz
 
 RUN chown -R hadoopuser:hadoopuser /opt/hadoop
-    
 ENV HADOOP_HOME=/opt/hadoop
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
