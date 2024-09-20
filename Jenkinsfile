@@ -20,7 +20,7 @@ pipeline {
                 script {
                     // Копируем файл config в контейнер
                     sh 'docker cp config hadoop:/opt/hadoop'
-                    sleep(time: 2, unit: 'SECONDS')
+                    sleep(time: 10, unit: 'SECONDS')
                     
                     // Выполняем команду в контейнере
                     sh 'docker exec -u hadoopuser hadoop bash -c "hdfs dfs -put /opt/hadoop/config /"'
