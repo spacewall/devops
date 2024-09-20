@@ -23,8 +23,6 @@ RUN mv /hadoop-3.3.6-src/hadoop-dist/target/hadoop-3.3.6.tar.gz . && \
 RUN mv hadoop-3.3.6 /opt/hadoop && \
     rm -fr hadoop-3.3.6.tar.gz
 
-RUN mvn clean install
-
 RUN chown -R hadoopuser:hadoopuser /opt/hadoop
 ENV HADOOP_HOME=/opt/hadoop
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
